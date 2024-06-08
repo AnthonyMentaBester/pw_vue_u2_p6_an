@@ -3,6 +3,9 @@
 
     <p>{{numero}} <sup>2</sup> = {{calcular}}</p>
 
+
+
+
     <div>
         <button v-on:click = "incrementar">+1</button>
         <button @click="disminuir" >-1</button>
@@ -13,10 +16,24 @@
 
 <script>
 export default {
-    props:["titulo", "num"],
+   //primera forma de declara un props (basica)
+   // props:["titulo", "num"],
+   props:{
+    titulo: String,
+    num: {
+        type: Number,
+        required: false, 
+        default: 10,
+        validator(value){
+            return value>0;
+
+        }
+    }
+
+   },
     data(){
         return{
-            numero: 5,
+            numero: this.num,
         };
     },
     methods:{

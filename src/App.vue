@@ -1,10 +1,10 @@
 <template>
 <img src="./assets/logo.png" alt="no existe">
-<Contador titulo="Estudiante"/>
-<Contador titulo="Profesor" />
-<Contador />
+<Contador titulo="Estudiante" :num="-1"/>
+<Contador titulo="Profesor" :num="5" />
+<Contador :num="calcularValor()" />
 
-
+-->
 </template>
 
 <script>
@@ -16,6 +16,11 @@ export default {
   components: {
     Contador,
     
+  },
+  methods:{
+    calcularValor(){
+      return 10+2;
+    }
   }
 }
 </script>

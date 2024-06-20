@@ -9,9 +9,9 @@
         <input v-model="pregunta" type="text" placeholder="Hazme una Pregunta">
         <p>Recuerda Terminar la pregunta con el signo de interrogacion (?)</p>
 
-        <div class="respuesta">
+        <div v-show="mensaje" class="respuesta">
             <h2>{{pregunta }}</h2>
-            <h1>{{respuesta}}</h1>
+            <h1>{{respuesta ==='yes'? 'SI!':'NO!'}}</h1>
         </div>
     </div>
   
@@ -25,11 +25,13 @@ export default {
             pregunta: null,
             respuesta: null,
             img: null,
+            mensaje: false,
 
         };
     },
     watch:{
         pregunta(value, oldValue){
+            this.mensaje= false;
             
             if(!value.includes("?")){
                 console.log({value, oldValue});
@@ -38,6 +40,7 @@ export default {
             //Consumir el API para obtener la respuesta
             //a esto se refiere con no pober el async
             this.obtenerRespuesta();
+            this.mensaje = true;
         },
     },
     methods:{
@@ -57,7 +60,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 img, .oscuro {
     max-width: 100%;
     height: 100vh;
@@ -101,6 +104,9 @@ p {
 
 .respuesta{
     margin-top: 290px;
+}
+body{
+    background-color: black;
 }
 
 

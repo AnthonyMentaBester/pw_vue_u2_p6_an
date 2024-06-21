@@ -1,8 +1,8 @@
 <template>
     <div class="pokemon-container">
-        <img  v-show="mostrar" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/150.svg" alt="No se pudo visualizar la imagen">
+        <img  v-show="mostrarPokemon" :src="imagenSRC" alt="No se pudo visualizar la imagen">
 
-        <img v-show="!mostrar" class="oculta-pokemon" src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/150.svg" alt="No se pudo visualizar la imagen">
+        <img v-show="!mostrarPokemon" class="oculta-pokemon" :src="imagenSRC" alt="No se pudo visualizar la imagen">
     </div>  
 
 </template>
@@ -14,8 +14,27 @@ export default {
             mostrar: true,
         };
     },
+    props:{
+        idPokemon:{
+            type: Number,
+            required: true,
 
-}
+        },
+        mostrarPokemon:{
+            type: Boolean,
+            required: true,
+        },
+
+    },
+    computed:{
+        imagenSRC(){
+            return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${this.idPokemon}.svg`;
+        },
+
+    },
+
+};
+
 </script>
 
 <style scoped>
